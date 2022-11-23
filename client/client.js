@@ -24,6 +24,12 @@ document.querySelector('.js--post').addEventListener('click', async () => {
 
     })
     let data = await response.json()
-    // console.log(response)
-    console.log(data)
+})
+
+document.querySelector('.js--get-id').addEventListener('click', async()=>{
+let response = await fetch (`${origin}/todos/123`,{
+    method: "GET",
+    headers: { 'Content-Type': 'application/json' },
+})
+let data = await response
 })

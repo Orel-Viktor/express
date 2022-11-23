@@ -1,6 +1,7 @@
 
 const express = require('express')
 const cors = require('cors')
+const { request } = require('express')
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -15,7 +16,7 @@ app.get('/', (request, response) => {
     response.send('its empy page!!!')
 })
 
-const todos = [
+let todos = [
     {
         id: 123,
         text: "Vitya",
@@ -23,13 +24,24 @@ const todos = [
     }
 ]
 
-app.get('/todos', (request, response) => {
+app.get('/todos',  (request, response) => {
+    console.log('GET Todos', todos)
+    console.log({...request.params})
     response.send(todos)
+   
 })
 
-app.post('/todos', (request, response) => {
-    console.log(request.body)
-    request.body.id = Math.floor(Math.random()*100)
-    todos.push(request.body)
-    
+app.post('/todos',  (request, response) => {
+    const newTodo = {
+        ...request.body,
+        id: Math.floor(Math.random() * 100),
+        pup: Math.floor(Math.random() * 10),
+        testProperty: Math.floor(Math.random() * 10),
+    }
+    console.log('newTodo', newTodo)
+    todos.push(newTodo)
 })
+
+app.get('/todos:id'), (request,response)=>{
+    console.log(response.params)
+}
