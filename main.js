@@ -27,7 +27,6 @@ let todos = [
 app.get('/todos', (request, response) => {
     console.log('GET Todos', todos)
     response.send(todos)
-
 })
 
 app.post('/todos', (request, response) => {
@@ -45,6 +44,6 @@ app.get('/todos/:id', (request, response)=>{
     const id = +request.params.id;
     const todo = todos.find(item => item.id === id);
     response.send(todo);
-    // console.log(request.params)
+    console.log(request.params)
 }) 
 
