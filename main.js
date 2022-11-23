@@ -18,20 +18,19 @@ app.get('/', (request, response) => {
 
 let todos = [
     {
-        id: 123,
+        id: 43,
         text: "Vitya",
         checked: false,
     }
 ]
 
-app.get('/todos',  (request, response) => {
+app.get('/todos', (request, response) => {
     console.log('GET Todos', todos)
-    console.log({...request.params})
     response.send(todos)
-   
+
 })
 
-app.post('/todos',  (request, response) => {
+app.post('/todos', (request, response) => {
     const newTodo = {
         ...request.body,
         id: Math.floor(Math.random() * 100),
@@ -42,6 +41,10 @@ app.post('/todos',  (request, response) => {
     todos.push(newTodo)
 })
 
-app.get('/todos:id'), (request,response)=>{
-    console.log(response.params)
-}
+app.get('/todos/:id', (request, response)=>{
+    const id = +request.params.id;
+    const todo = todos.find(item => item.id === id);
+    response.send(todo);
+    // console.log(request.params)
+}) 
+
