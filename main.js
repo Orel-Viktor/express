@@ -59,21 +59,22 @@ app.put('/todos/:id', (request, response) => {
     console.log(todos)
 })
 
-app.delete('/todos/:id', (request, response)=>{
+app.delete('/todos/:id', (request, response) => {
     console.log(request.params.id)
-    if(request.params.id === undefined){
+    const id = +request.params.id
+    if (todos.forEach(item => item.id !== id)) {
         response.status(404)
         response.send({
-            status:"Eror"
+            status: "Eror"
         })
-    } else{
-        const id = +request.params.id
-        todos = todos.filter(item => item.id !==id)
+    } else {
+
+        todos = todos.filter(item => item.id !== id)
         response.send({
-            status:"Succses"
+            status: "Succses"
         })
         // console.log(todos)
     }
-  
+
 })
 

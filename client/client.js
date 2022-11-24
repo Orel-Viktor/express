@@ -49,7 +49,7 @@ document.querySelector('.js--put').addEventListener('click', async () => {
 })
 
 document.querySelector('.js--delete').addEventListener('click', async () => {
-let response =  await fetch(`${origin}/todos/0`,{
+let response =  await fetch(`${origin}/todos/42`,{
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' },
 })
