@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
 
 let todos = [
     {
-        id: 43,
+        id: 42,
         text: "Vitya",
         checked: false,
     }
@@ -40,10 +40,40 @@ app.post('/todos', (request, response) => {
     todos.push(newTodo)
 })
 
-app.get('/todos/:id', (request, response)=>{
+app.get('/todos/:id', (request, response) => {
     const id = +request.params.id;
     const todo = todos.find(item => item.id === id);
     response.send(todo);
     console.log(request.params)
-}) 
+    console.log(todo)
+})
+
+app.put('/todos/:id', (request, response) => {
+    const id = +request.params.id
+    const body = request.body
+    const todo = { ...body, id: Math.floor(Math.random() * 100), }
+    todos = todos.map(item => item.id === id ? { ...item, ...todo } : item)
+    response.send(todos)
+    // console.log(todos)
+    // console.log(todo)
+    console.log(todos)
+})
+
+app.delete('/todos/:id', (request, response)=>{
+    console.log(request.params.id)
+    if(request.params.id === undefined){
+        response.status(404)
+        response.send({
+            status:"Eror"
+        })
+    } else{
+        const id = +request.params.id
+        todos = todos.filter(item => item.id !==id)
+        response.send({
+            status:"Succses"
+        })
+        // console.log(todos)
+    }
+  
+})
 

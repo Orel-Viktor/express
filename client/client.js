@@ -27,7 +27,7 @@ document.querySelector('.js--post').addEventListener('click', async () => {
 })
 
 document.querySelector('.js--get-id').addEventListener('click', async () => {
-    let response = await fetch(`${origin}/todos/43`, {
+    let response = await fetch(`${origin}/todos/42`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json' },
         // body: JSON.stringify({
@@ -36,4 +36,21 @@ document.querySelector('.js--get-id').addEventListener('click', async () => {
     })
     let data = await response.json()
     console.log(data)
+})
+
+document.querySelector('.js--put').addEventListener('click', async () => {
+    let response = await fetch(`${origin}/todos/42`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            cheked: true,
+        })
+    })
+})
+
+document.querySelector('.js--delete').addEventListener('click', async () => {
+let response =  await fetch(`${origin}/todos/0`,{
+    method: "DELETE",
+    headers: { 'Content-Type': 'application/json' },
+})
 })
