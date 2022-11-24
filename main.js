@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
 
 let todos = [
     {
-        id: 22,
+        id: 2,
         text: "Vitya",
         checked: false,
     }
@@ -32,7 +32,7 @@ app.get('/todos', (request, response) => {
 app.post('/todos', (request, response) => {
     const newTodo = {
         ...request.body,
-        id: Math.floor(Math.random() * 100),
+        id: Math.floor(Math.random() * 10),
         pup: Math.floor(Math.random() * 10),
         testProperty: Math.floor(Math.random() * 10),
     }
@@ -51,7 +51,7 @@ app.get('/todos/:id', (request, response) => {
 app.put('/todos/:id', (request, response) => {
     const id = +request.params.id
     const body = request.body
-    const todo = { ...body, id: Math.floor(Math.random() * 100), }
+    const todo = { ...body, id: Math.floor(Math.random() * 10), }
     todos = todos.map(item => item.id === id ? { ...item, ...todo } : item)
     response.send(todos)
     // console.log(todos)
@@ -62,7 +62,7 @@ app.put('/todos/:id', (request, response) => {
 app.delete('/todos/:id', (request, response) => {
     console.log(request.params.id)
     const id = +request.params.id
-    if (todos.find(item => item.id !== id)) {
+    if (todos.find(item => item.id === id) === undefined) {
         response.status(404)
         response.send({
             status: "Eror"

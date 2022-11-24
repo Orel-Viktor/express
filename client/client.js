@@ -39,11 +39,11 @@ document.querySelector('.js--get-id').addEventListener('click', async () => {
 })
 
 document.querySelector('.js--put').addEventListener('click', async () => {
-    let response = await fetch(`${origin}/todos/42`, {
+    let response = await fetch(`${origin}/todos/2`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            cheked: true,
+            checked: true,
         })
     })
 })
