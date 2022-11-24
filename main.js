@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
 
 let todos = [
     {
-        id: 42,
+        id: 22,
         text: "Vitya",
         checked: false,
     }
@@ -62,13 +62,12 @@ app.put('/todos/:id', (request, response) => {
 app.delete('/todos/:id', (request, response) => {
     console.log(request.params.id)
     const id = +request.params.id
-    if (todos.forEach(item => item.id !== id)) {
+    if (todos.find(item => item.id !== id)) {
         response.status(404)
         response.send({
             status: "Eror"
         })
     } else {
-
         todos = todos.filter(item => item.id !== id)
         response.send({
             status: "Succses"
